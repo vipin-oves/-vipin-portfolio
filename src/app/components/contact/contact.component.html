@@ -1,0 +1,219 @@
+<!-- src/app/components/contact/contact.component.html -->
+<section id="contact" class="contact-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-label">07. Contact</span>
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-desc">Whether you have an opportunity, a question, or just want to say hello — my inbox is always open.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- Left: Info -->
+      <div class="contact-info">
+        <div class="contact-intro">
+          <h3>Let's work together</h3>
+          <p>
+            I'm currently open to new backend engineering roles, freelance contracts,
+            and interesting side projects. If you're building something meaningful,
+            I'd love to hear about it.
+          </p>
+        </div>
+
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="detail-label mono">Email</span>
+              <a [href]="'mailto:' + personalInfo.email" class="detail-value">{{ personalInfo.email }}</a>
+            </div>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="detail-label mono">Location</span>
+              <span class="detail-value">{{ personalInfo.location }}</span>
+            </div>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div>
+              <span class="detail-label mono">Response Time</span>
+              <span class="detail-value">Usually within 24 hours</span>
+            </div>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="detail-icon status-icon">
+              <span class="status-pulse"></span>
+            </div>
+            <div>
+              <span class="detail-label mono">Availability</span>
+              <span class="detail-value accent">Open to opportunities</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Social -->
+        <div class="quick-social">
+          <p class="mono quick-label">Or reach me on</p>
+          <div class="quick-links">
+            <a href="https://linkedin.com/in/vipinkumaryadav-dev" target="_blank" rel="noopener noreferrer" class="quick-link">LinkedIn</a>
+            <span class="dot-sep"></span>
+            <a href="https://github.com/vipinkumaryadav" target="_blank" rel="noopener noreferrer" class="quick-link">GitHub</a>
+            <span class="dot-sep"></span>
+            <a href="https://naukri.com/mnjuser/profile/vipinkumaryadav" target="_blank" rel="noopener noreferrer" class="quick-link">Naukri</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-form-wrap">
+
+        <!-- Success State -->
+        <div class="form-success" *ngIf="submitSuccess">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h4>Message Sent!</h4>
+          <p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="form-error-banner" *ngIf="submitError">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          Something went wrong. Please try again or email me directly.
+        </div>
+
+        <!-- The Form -->
+        <form
+          [formGroup]="contactForm"
+          (ngSubmit)="onSubmit()"
+          class="contact-form"
+          *ngIf="!submitSuccess"
+          novalidate
+        >
+          <div class="form-row">
+            <!-- Name -->
+            <div class="form-group" [class.has-error]="isInvalid(name)">
+              <label for="cf-name" class="form-label mono">
+                <span>Name</span>
+                <span class="required-mark">*</span>
+              </label>
+              <input
+                id="cf-name"
+                type="text"
+                class="form-input"
+                formControlName="name"
+                placeholder="Your full name"
+                autocomplete="name"
+              >
+              <span class="form-error" *ngIf="isInvalid(name)">{{ getError(name) }}</span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group" [class.has-error]="isInvalid(email)">
+              <label for="cf-email" class="form-label mono">
+                <span>Email</span>
+                <span class="required-mark">*</span>
+              </label>
+              <input
+                id="cf-email"
+                type="email"
+                class="form-input"
+                formControlName="email"
+                placeholder="you@company.com"
+                autocomplete="email"
+              >
+              <span class="form-error" *ngIf="isInvalid(email)">{{ getError(email) }}</span>
+            </div>
+          </div>
+
+          <!-- Subject -->
+          <div class="form-group" [class.has-error]="isInvalid(subject)">
+            <label for="cf-subject" class="form-label mono">
+              <span>Subject</span>
+              <span class="optional-mark">(optional)</span>
+            </label>
+            <input
+              id="cf-subject"
+              type="text"
+              class="form-input"
+              formControlName="subject"
+              placeholder="e.g. Senior Java Developer Role at..."
+            >
+            <span class="form-error" *ngIf="isInvalid(subject)">{{ getError(subject) }}</span>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group" [class.has-error]="isInvalid(message)">
+            <label for="cf-message" class="form-label mono">
+              <span>Message</span>
+              <span class="required-mark">*</span>
+              <span class="char-count mono" [class.near-limit]="charCount > maxChars * 0.85">
+                {{ charCount }}/{{ maxChars }}
+              </span>
+            </label>
+            <textarea
+              id="cf-message"
+              class="form-input form-textarea"
+              formControlName="message"
+              placeholder="Tell me about your project, opportunity, or just say hello..."
+              rows="6"
+            ></textarea>
+            <span class="form-error" *ngIf="isInvalid(message)">{{ getError(message) }}</span>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="btn btn-primary submit-btn"
+            [disabled]="isSubmitting"
+            [class.loading]="isSubmitting"
+          >
+            <span class="btn-content" *ngIf="!isSubmitting">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              Send Message
+            </span>
+            <span class="btn-content" *ngIf="isSubmitting">
+              <span class="spinner"></span>
+              Sending...
+            </span>
+          </button>
+
+          <p class="form-note mono">
+            * Required fields. Your data is never shared with third parties.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

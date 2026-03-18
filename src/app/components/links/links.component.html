@@ -1,0 +1,47 @@
+<!-- src/app/components/links/links.component.html -->
+<section id="links" class="links-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-label">06. Connect</span>
+      <h2 class="section-title">Find Me Online</h2>
+      <p class="section-desc">Connect, collaborate, or just say hello — choose your preferred platform.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="links-grid">
+      <a
+        *ngFor="let link of enrichedLinks; let i = index"
+        [href]="link.url"
+        [target]="link.platform !== 'Email' ? '_blank' : '_self'"
+        rel="noopener noreferrer"
+        class="link-card card"
+        [style.animation-delay]="(i * 0.1) + 's'"
+        [style.--link-color]="link.color"
+      >
+        <div class="link-card-inner">
+          <div class="link-icon-wrap" [style.background]="link.color + '18'" [style.border-color]="link.color + '40'">
+            <span class="link-svg" [innerHTML]="link.icon"></span>
+          </div>
+
+          <div class="link-content">
+            <div class="link-header-row">
+              <h3 class="link-platform">{{ link.platform }}</h3>
+              <span class="link-stats mono" *ngIf="link.stats">{{ link.stats }}</span>
+            </div>
+            <p class="link-label mono">{{ link.label }}</p>
+            <p class="link-desc">{{ link.description }}</p>
+          </div>
+
+          <div class="link-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>

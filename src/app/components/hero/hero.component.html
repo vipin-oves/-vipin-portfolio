@@ -1,0 +1,123 @@
+<!-- src/app/components/hero/hero.component.html -->
+<section id="hero" class="hero-section">
+
+  <!-- Background grid -->
+  <div class="hero-grid-bg" aria-hidden="true">
+    <div class="grid-lines"></div>
+    <div class="radial-glow"></div>
+    <div class="corner-bracket top-left"></div>
+    <div class="corner-bracket top-right"></div>
+  </div>
+
+  <!-- Floating code blocks -->
+  <div class="floating-codes" aria-hidden="true">
+    <div class="code-chip c1 mono">&#64;SpringBootApplication</div>
+    <div class="code-chip c2 mono">&#64;RestController</div>
+    <div class="code-chip c3 mono">&#64;Service</div>
+    <div class="code-chip c4 mono">Kafka.produce()</div>
+    <div class="code-chip c5 mono">docker run -p 8080:8080</div>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Left: Content -->
+      <div class="hero-content">
+        <div class="hero-greeting fade-in-up">
+          <span class="mono accent">// Hello, World!</span>
+        </div>
+
+        <h1 class="hero-name fade-in-up fade-in-up-delay-1">
+          {{ personalInfo.firstName }}
+          <span class="name-last">{{ personalInfo.lastName }}</span>
+        </h1>
+
+        <div class="hero-typed fade-in-up fade-in-up-delay-2">
+          <span class="typed-prefix mono">&gt;&nbsp;</span>
+          <span class="typed-text">{{ displayText }}</span>
+          <span class="typed-cursor mono">|</span>
+        </div>
+
+        <p class="hero-tagline fade-in-up fade-in-up-delay-3">
+          {{ personalInfo.bio | slice:0:180 }}...
+        </p>
+
+        <div class="hero-actions fade-in-up fade-in-up-delay-4">
+          <a href="#resume" class="btn btn-primary" (click)="scrollToSection('#resume', $event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Resume
+          </a>
+          <a href="#projects" class="btn btn-outline" (click)="scrollToProjects($event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            View Projects
+          </a>
+        </div>
+
+        <div class="hero-socials fade-in-up fade-in-up-delay-5">
+          <a
+            *ngFor="let link of socialLinks"
+            [href]="link.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon-link"
+            [title]="link.platform"
+            [attr.aria-label]="link.platform"
+          >
+            <span [innerHTML]="link.icon"></span>
+          </a>
+          <div class="social-divider"></div>
+          <span class="social-status">
+            <span class="status-dot"></span>
+            Open to opportunities
+          </span>
+        </div>
+      </div>
+
+      <!-- Right: Avatar card -->
+      <div class="hero-visual fade-in-up fade-in-up-delay-3">
+        <div class="avatar-card">
+          <div class="avatar-ring"></div>
+          <div class="avatar-initials">
+            <span>{{ personalInfo.avatarInitials }}</span>
+          </div>
+          <div class="avatar-decoration" aria-hidden="true"></div>
+
+          <div class="info-chip chip-top mono">
+            <span class="chip-dot"></span>
+            {{ personalInfo.currentRole }}
+          </div>
+          <div class="info-chip chip-bottom mono">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            {{ personalInfo.location }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats bar -->
+    <div class="hero-stats fade-in-up" style="animation-delay: 0.6s">
+      <div class="stat-item" *ngFor="let stat of stats">
+        <span class="stat-value">{{ stat.value }}</span>
+        <span class="stat-label mono">{{ stat.label }}</span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <span class="mono">scroll</span>
+      <div class="scroll-line">
+        <div class="scroll-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,70 @@
+<!-- src/app/components/skills/skills.component.html -->
+<section id="skills" class="skills-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-label">02. Skills</span>
+      <h2 class="section-title">Technical Toolkit</h2>
+      <p class="section-desc">Technologies and tools I use to architect and build production-grade backend systems.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="skills-tabs">
+      <button
+        *ngFor="let cat of skillCategories; let i = index"
+        class="skills-tab"
+        [class.active]="activeCategory === i"
+        (click)="setActiveCategory(i)"
+      >
+        <span class="tab-icon">{{ cat.icon }}</span>
+        <span>{{ cat.category }}</span>
+      </button>
+    </div>
+
+    <!-- Skills Panel -->
+    <div class="skills-panel">
+      <div class="skills-panel-header">
+        <h3>
+          <span>{{ skillCategories[activeCategory].icon }}</span>
+          {{ skillCategories[activeCategory].category }}
+          <span class="skill-count mono">{{ skillCategories[activeCategory].skills.length }} skills</span>
+        </h3>
+      </div>
+
+      <div class="skills-list">
+        <div
+          class="skill-item"
+          *ngFor="let skill of skillCategories[activeCategory].skills; let i = index"
+          [style.animation-delay]="(i * 0.06) + 's'"
+        >
+          <div class="skill-header">
+            <span class="skill-name">{{ skill.name }}</span>
+            <div class="skill-meta">
+              <span class="skill-level-label mono">{{ getLevelLabel(skill.level) }}</span>
+              <span class="skill-percent mono">{{ skill.level }}%</span>
+            </div>
+          </div>
+          <div class="skill-bar-track">
+            <div
+              class="skill-bar-fill"
+              [style.width]="getBarWidth(skill.level)"
+              [style.transition-delay]="(i * 0.06) + 's'"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Cloud -->
+    <div class="tech-cloud">
+      <span class="section-label" style="display:block; margin-bottom:20px">All Technologies</span>
+      <div class="tech-tags">
+        <ng-container *ngFor="let cat of skillCategories">
+          <span class="tag" *ngFor="let skill of cat.skills">{{ skill.name }}</span>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>

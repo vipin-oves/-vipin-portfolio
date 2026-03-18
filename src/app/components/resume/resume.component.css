@@ -1,0 +1,200 @@
+/* src/app/components/resume/resume.component.css */
+
+.resume-section {
+  background: var(--bg-primary);
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+/* ── Doc Card ── */
+.doc-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: all var(--transition-med);
+}
+
+.doc-card.has-file {
+  border-color: rgba(0, 212, 255, 0.25);
+  background: linear-gradient(135deg, var(--bg-card), rgba(0,212,255,0.02));
+}
+
+/* Doc Header */
+.doc-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.doc-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.resume-icon {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: var(--accent-cyan);
+}
+
+.letter-icon {
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  color: #a78bfa;
+}
+
+.doc-title {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.doc-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ── Upload Zone ── */
+.upload-zone {
+  border: 2px dashed var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all var(--transition-med);
+  background: var(--bg-secondary);
+  text-align: center;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: var(--accent-cyan);
+  background: var(--accent-cyan-dim);
+  transform: scale(1.01);
+}
+
+.upload-zone.drag-over .upload-icon {
+  color: var(--accent-cyan);
+  transform: translateY(-4px);
+}
+
+.upload-icon {
+  color: var(--text-muted);
+  transition: all var(--transition-med);
+}
+
+.upload-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.upload-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ── File Info ── */
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.file-preview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.pdf-icon {
+  color: #ff4444;
+  flex-shrink: 0;
+}
+
+.file-name {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+.file-meta {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.file-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.file-btn {
+  flex: 1;
+  min-width: 90px;
+  justify-content: center;
+  font-size: 0.78rem;
+  padding: 8px 14px;
+}
+
+.remove-btn {
+  color: #f87171 !important;
+  border-color: rgba(248, 113, 113, 0.3) !important;
+}
+.remove-btn:hover {
+  background: rgba(248, 113, 113, 0.1) !important;
+  border-color: rgba(248, 113, 113, 0.5) !important;
+}
+
+/* ── Storage Note ── */
+.storage-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.storage-note svg {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+.storage-note strong {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .resume-grid { grid-template-columns: 1fr; }
+  .doc-card { padding: 24px; }
+  .file-btn { min-width: 80px; }
+}

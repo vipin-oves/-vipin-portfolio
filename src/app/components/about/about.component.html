@@ -1,0 +1,99 @@
+<!-- src/app/components/about/about.component.html -->
+<section id="about" class="about-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-label">01. About</span>
+      <h2 class="section-title">The Engineer Behind the Code</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="about-grid">
+
+      <!-- Left: Bio & Highlights -->
+      <div class="about-left">
+        <div class="about-bio-card">
+          <div class="bio-header">
+            <div class="bio-avatar">{{ personalInfo.avatarInitials }}</div>
+            <div class="bio-meta">
+              <h3>{{ personalInfo.name }}</h3>
+              <p class="mono accent">{{ personalInfo.title }}</p>
+              <p class="bio-location">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                {{ personalInfo.location }}
+              </p>
+            </div>
+          </div>
+
+          <div class="bio-text">
+            <p>{{ personalInfo.bio }}</p>
+          </div>
+
+          <div class="bio-quick-facts">
+            <div class="fact-item">
+              <span class="fact-icon">🎓</span>
+              <div>
+                <span class="fact-label mono">Experience</span>
+                <span class="fact-value">{{ personalInfo.yearsOfExperience }}+ Years</span>
+              </div>
+            </div>
+            <div class="fact-item">
+              <span class="fact-icon">🏢</span>
+              <div>
+                <span class="fact-label mono">Current</span>
+                <span class="fact-value">{{ personalInfo.currentCompany }}</span>
+              </div>
+            </div>
+            <div class="fact-item">
+              <span class="fact-icon">📧</span>
+              <div>
+                <span class="fact-label mono">Email</span>
+                <a [href]="'mailto:' + personalInfo.email" class="fact-value accent">{{ personalInfo.email }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highlights Grid -->
+        <div class="highlights-grid">
+          <div class="highlight-card" *ngFor="let h of highlights">
+            <span class="highlight-icon">{{ h.icon }}</span>
+            <h4>{{ h.title }}</h4>
+            <p>{{ h.desc }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Timeline -->
+      <div class="about-right">
+        <div class="timeline-header">
+          <span class="section-label" style="text-align:left;margin-bottom:0">Experience Timeline</span>
+        </div>
+        <div class="timeline">
+          <div
+            class="timeline-item"
+            *ngFor="let item of timeline; let i = index; let last = last"
+            [class.last]="last"
+          >
+            <div class="timeline-connector">
+              <div class="timeline-dot"></div>
+              <div class="timeline-line" *ngIf="!last"></div>
+            </div>
+            <div class="timeline-body">
+              <span class="timeline-year mono">{{ item.year }}</span>
+              <h4 class="timeline-role">{{ item.role }}</h4>
+              <p class="timeline-company accent mono">{{ item.company }}</p>
+              <p class="timeline-desc">{{ item.description }}</p>
+              <div class="timeline-tags">
+                <span class="tag" *ngFor="let tag of item.tags">{{ tag }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

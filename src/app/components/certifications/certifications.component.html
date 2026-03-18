@@ -1,0 +1,55 @@
+<!-- src/app/components/certifications/certifications.component.html -->
+<section id="certifications" class="certifications-section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-label">04. Education</span>
+<h2 class="section-title">Academic Background</h2>
+<p class="section-desc">Formal education in Computer Science and Applications from premier Delhi University institutions.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="certs-grid">
+      <div
+        class="cert-card card"
+        *ngFor="let cert of certifications; let i = index"
+        [style.animation-delay]="(i * 0.1) + 's'"
+      >
+        <div class="cert-badge" [style.background]="cert.badgeColor + '15'" [style.border-color]="cert.badgeColor + '40'">
+          <span class="cert-icon">{{ cert.icon }}</span>
+        </div>
+
+        <div class="cert-body">
+          <div class="cert-year mono">{{ cert.year }}</div>
+          <h3 class="cert-title">{{ cert.title }}</h3>
+          <p class="cert-provider">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            {{ cert.provider }}
+          </p>
+          <p class="cert-id mono" *ngIf="cert.credentialId">
+            ID: {{ cert.credentialId }}
+          </p>
+        </div>
+
+        <div class="cert-actions" *ngIf="cert.verifyUrl">
+          <a
+            [href]="cert.verifyUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-ghost cert-btn"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Verify
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

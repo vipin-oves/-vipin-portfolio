@@ -1,0 +1,74 @@
+<!-- src/app/components/navbar/navbar.component.html -->
+<nav class="navbar" [class.scrolled]="isScrolled" [class.mobile-open]="isMobileMenuOpen">
+  <div class="nav-container">
+
+    <!-- Logo -->
+    <a class="nav-logo" href="#hero" (click)="scrollToSection('#hero')">
+      <span class="logo-bracket mono">&lt;</span>
+      <span class="logo-name">{{ personalInfo.firstName | slice:0:1 }}{{ personalInfo.lastName | slice:0:1 }}</span>
+      <span class="logo-bracket mono">/&gt;</span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li *ngFor="let link of navLinks; let i = index">
+        <a
+          class="nav-link"
+          [class.active]="activeSection === link.href.replace('#','')"
+          href="{{ link.href }}"
+          (click)="scrollToSection(link.href); $event.preventDefault()"
+        >
+          <span class="nav-index mono">0{{ i + 1 }}.</span>
+          {{ link.label }}
+        </a>
+      </li>
+    </ul>
+
+    <!-- CTA -->
+    <a
+      href="#resume"
+      class="nav-cta btn btn-outline"
+      (click)="scrollToSection('#resume'); $event.preventDefault()"
+    >
+      Resume
+    </a>
+
+    <!-- Hamburger -->
+    <button
+      class="hamburger"
+      [class.open]="isMobileMenuOpen"
+      (click)="toggleMobileMenu()"
+      aria-label="Toggle navigation menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.open]="isMobileMenuOpen">
+    <ul class="mobile-links">
+      <li *ngFor="let link of navLinks; let i = index" [style.animation-delay]="(i * 0.06) + 's'">
+        <a
+          class="mobile-link"
+          href="{{ link.href }}"
+          (click)="scrollToSection(link.href); $event.preventDefault()"
+        >
+          <span class="mono accent">0{{ i + 1 }}.</span>
+          {{ link.label }}
+        </a>
+      </li>
+    </ul>
+    <a
+      href="#resume"
+      class="btn btn-primary mobile-cta"
+      (click)="scrollToSection('#resume'); $event.preventDefault()"
+    >
+      View Resume
+    </a>
+  </div>
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" [class.visible]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+</nav>
